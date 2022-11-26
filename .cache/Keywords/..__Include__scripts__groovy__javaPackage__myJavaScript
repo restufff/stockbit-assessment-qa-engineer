@@ -1,10 +1,10 @@
 {
-  "keywordFileContentHash": "530A70C3DF126136DFD9198FDBD2F376",
+  "keywordFileContentHash": "A590E49570AD8B1FC6BABC7AA0F2BC06",
   "keywordClasses": [
     {
       "name": "javaPackage.myJavaScript",
       "keywordMethods": []
     }
   ],
-  "javadocParsed": false
+  "javadocParsed": true
 }

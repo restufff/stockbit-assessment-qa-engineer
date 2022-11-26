@@ -17,14 +17,4 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('https://demoqa.com/select-menu')
-
-WebUI.maximizeWindow()
-
-
-WebUI.click(findTestObject('Object Repository/01. Select Menu/05_button_selectValue'))
-WebUI.setText(findTestObject('Object Repository/01. Select Menu/17_inputText_selectValue'), 'Another root option')
-WebUI.sendKeys(findTestObject('Object Repository/01. Select Menu/17_inputText_selectValue'), Keys.chord(Keys.ENTER))
-
-
-
+CucumberKW.runFeatureFile('Include/features/soalNomorTiga.feature')

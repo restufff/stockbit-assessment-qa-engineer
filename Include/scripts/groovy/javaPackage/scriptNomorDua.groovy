@@ -44,51 +44,35 @@ import cucumber.api.java.en.When
 
 
 
-class myJavaScript {
+class scriptNomorDua {
 	/**
 	 * The step definitions below match with Katalon sample Gherkin steps
 	 */
-	@Given("User go to (.*)")
-	def user_go_to_site(String site) {
-		WebUI.openBrowser(site)
+	@Given("Users Go to web (.*)")
+	def users_go_to_web(String web) {
+		WebUI.openBrowser(web)
 		WebUI.maximizeWindow()
 	}
 
-	@When("User in 'select menu' page")
-	def user_in_selectMenu_page() {
-		System.out.println("User in 'select menu' page")
+	@When("User in 'Book Store' page")
+	def user_in_book_store_page() {
+		System.out.println("User in 'Book Store' page")
 	}
 
-	@And("User choose select value (.*)")
-	def user_choose_select_value_another_root_option(String selectValue) {
-		WebUI.click(findTestObject('Object Repository/01. Select Menu/05_button_selectValue'))
-		WebUI.setText(findTestObject('Object Repository/01. Select Menu/17_inputText_selectValue'), selectValue)
-		WebUI.click(findTestObject('Object Repository/01. Select Menu/04_select_menus'))
+	@And("User search book (.*)")
+	def user_search_book_qa_engineer(String book) {
+		WebUI.setText(findTestObject('Object Repository/02. Books/01_inputText_books'), book)
+		WebUI.click(findTestObject('Object Repository/02. Books/02_button_search'))
 	}
-	
-	@And("User choose select one (.*)")
-	def user_choose_select_one_other(String selectOne) {
-		WebUI.click(findTestObject('Object Repository/01. Select Menu/06_button_selectOne'))
-		WebUI.setText(findTestObject('Object Repository/01. Select Menu/18_inputText_selectOne'), selectOne)
-		WebUI.click(findTestObject('Object Repository/01. Select Menu/07_selectMenu_selectOne'))
-	}
-	
-	@And("User choose old style select menu (.*)")
-	def user_choose_old_style_select_menu_aqua(String oldStyleSelectMenu) {
-		WebUI.selectOptionByLabel(findTestObject('Object Repository/01. Select Menu/08_select_oldStyleSelectMenu'), oldStyleSelectMenu, false)
-	}
-	
-	@And("User choose multi select drop down 'all color'")
-	def user_choose_multi_select_drop_down_all_color() {
-		WebUI.click(findTestObject('Object Repository/01. Select Menu/09_button_multiSelect_dropDown'))
-		while(WebUI.verifyElementPresent(findTestObject('Object Repository/01. Select Menu/10_selectMenu_multiSelectDropDown'), 2, FailureHandling.OPTIONAL)){
-			WebUI.click(findTestObject('Object Repository/01. Select Menu/11_option_color'))
+
+	@Then("User see 'No rows found'")
+	def user_see_no_rows_found() {
+		String textSearchResult = WebUI.getText(findTestObject('Object Repository/02. Books/03_text_noRowsFound'))
+		System.out.println(textSearchResult)
+		if(WebUI.verifyMatch(textSearchResult, 'No rows found', false)) {
+			KeywordUtil.markPassed('No rows found')
+		} else {
+			KeywordUtil.markFailedAndStop('Book Found')
 		}
 	}
-	
-	@Then('User success input all select menu')
-	def user_success_input_all_select_menu() {
-		System.out.println('User success input all select menu')
-	}
-	
 }
